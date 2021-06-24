@@ -1,0 +1,46 @@
+/* tom  */
+* {
+  margin: 0px;
+  padding: 0px;
+  transition: 0.2s;
+}
+
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+a.signupLink:hover {
+  text-decoration: underline;
+}
+
+.follow-button {
+  color: #3399ff;
+  font-family: "Helvetica";
+  font-size: 12pt;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #3399ff;
+  border-radius: 3px;
+  width: 85px;
+  height: 35px;
+  cursor: hand;
+  text-align: center;
+}
+
+.following {
+  color: #ffffff;
+  width: 85px;
+
+  font-size: 12pt;
+  font-family: "Helvetica";
+  text-align: center;
+  border: 1px solid;
+  border-radius: 3px;
+  background-color: #2eb82e;
+  border-color: #2eb82e;
+}
+
+.grid-modify {
+  grid-template-columns: 80px 180px 120px 180px 80px;
+}
