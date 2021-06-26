@@ -40,42 +40,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/login", (req, res) => {
-  // If the user already has an account send them to the dashboard page
-  if (req.user) {
-    res.redirect("/dashboard");
-  }
-  res.render("login", {
-    user: req.session.user,
-    loggedIn: req.session.loggedIn,
-  });
-});
-
-// Route for logging user out
-router.get("/logout", (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204);
-      res.redirect("/");
-    });
-  } else {
-    res.status(404).end();
-  }
-});
-
-router.get("/signup", (req, res) => {
-  // If the user already has an account send them to the dashboard page
-  if (req.user) {
-    res.redirect("/dashboard");
-  }
-  res.render("signup", {
-    user: req.session.user,
-    loggedIn: req.session.loggedIn,
-  });
-});
-
-// Here we've add our isAuthenticated middleware to this route.
-// If a user who is not logged in tries to access this route they will be redirected to the signup page
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const pastGamesData = await Game.findAll({
@@ -109,6 +73,39 @@ router.get("/dashboard", withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.get("/login", (req, res) => {
+  // If the user already has an account send them to the dashboard page
+  if (req.user) {
+    res.redirect("/dashboard");
+  }
+  res.render("login", {
+    user: req.session.user,
+    loggedIn: req.session.loggedIn,
+  });
+});
+
+router.get("/logout", (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204);
+      res.redirect("/");
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
+router.get("/signup", (req, res) => {
+  // If the user already has an account send them to the dashboard page
+  if (req.user) {
+    res.redirect("/dashboard");
+  }
+  res.render("signup", {
+    user: req.session.user,
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 module.exports = router;

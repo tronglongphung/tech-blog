@@ -1,38 +1,39 @@
-<div
-    class="grid grid-modify justify-items-stretch justify-around w-full p-4 mb-8 bg-white border-solid rounded-lg lg:w-3/4">
-    <div class="overflow-hidden rounded-full self-start"><img width="80" src="/images/{{teams.0.logo}}"
-            alt="{{teams.0.logo}}">
+<div class="sm:max-w-lg w-full p-10 bg-white rounded-xl z-10">
+    <div class="text-center">
+        <h2 class="mt-3 text-3xl font-bold text-gray-900">
+            Write something
+        </h2>
     </div>
-    {{!-- picture --}}
-    {{!-- left --}}
-    <div class="flex flex-col items-center justify-between">
-        <span class="inline-block text-2xl text-center align-middle"><a
-                href="/team/{{teams.0.id}}">{{teams.0.name}}</a></span>
-        <span class="inline-block text-2xl text-center justify-end">{{teams.0.teamrecord.result}}</span>
-        {{!-- score --}}
-    </div>
-
-    {{!-- middle --}}
-    <div class="items-center justify-center">
-        <p class="text-center">{{format_date date_time}} {{format_time date_time}}</p>
-        {{!-- time date --}}
-        <p class="text-3xl font-extrabold text-center">VS</p>
-        <p class="text-center">{{teams.0.location}}</p>
-        {{!-- location --}}
-    </div>
-
-    {{!-- right --}}
-    <div class="flex flex-col items-center justify-between">
-        <span class="inline-block text-2xl text-center align-middle"><a
-                href="/team/{{teams.1.id}}">{{teams.1.name}}</a></span>
-        <span class="inline-block text-2xl text-center justify-end">{{teams.1.teamrecord.result}}</span>
-        {{!-- score --}}
-
-
-    </div>
-
-    <div class="overflow-hidden rounded-full self-start"><img width="80" src="/images/{{teams.1.logo}}"
-            alt="{{teams.1.logo}}">
-    </div>
-    {{!-- picture --}}
+    <form class="mt-8 space-y-3" action="#" method="POST">
+        <div class="grid grid-cols-1 space-y-2">
+            <label class="text-sm font-bold text-gray-500 tracking-wide">Title</label>
+            <input class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+                type="">
+        </div>
+        <div class="grid grid-cols-1 space-y-2">
+            <label class="text-sm font-bold text-gray-500 tracking-wide">Content</label>
+            <div class="flex items-center justify-center w-full">
+                <input
+                    class="text-base p-2 border border-gray-300 focus:outline-none focus:border-indigo-500 rounded-lg border-4 w-full  "
+                    type="">
+            </div>
+        </div>
+        <div>
+            <button type="submit"
+                class="my-5 w-full flex justify-center bg-blue-500 text-gray-100 p-4  rounded-full tracking-wide
+                                    font-semibold  focus:outline-none focus:shadow-outline hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300">
+                Submit
+            </button>
+        </div>
 </div>
+
+</form>
+</div>
+</div>
+
+<style>
+    .has-mask {
+        position: absolute;
+        clip: rect(10px, 150px, 130px, 10px);
+    }
+</style>
