@@ -4,31 +4,28 @@
             Write something
         </h2>
     </div>
-    <form class="mt-8 space-y-3" action="#" method="POST">
+    <form class="mt-8 space-y-3 new_blog_form">
         <div class="grid grid-cols-1 space-y-2">
             <label class="text-sm font-bold text-gray-500 tracking-wide">Title</label>
             <input class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                type="">
+                id="title">
         </div>
         <div class="grid grid-cols-1 space-y-2">
             <label class="text-sm font-bold text-gray-500 tracking-wide">Content</label>
             <div class="flex items-center justify-center w-full">
                 <input
                     class="text-base p-2 border border-gray-300 focus:outline-none focus:border-indigo-500 rounded-lg border-4 w-full  "
-                    type="">
+                    id="content">
             </div>
         </div>
         <div>
             <button type="submit"
                 class="my-5 w-full flex justify-center bg-blue-500 text-gray-100 p-4  rounded-full tracking-wide
-                                    font-semibold  focus:outline-none focus:shadow-outline hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300">
+                                    font-semibold focus:outline-none focus:shadow-outline hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300">
                 Submit
             </button>
         </div>
-</div>
-
-</form>
-</div>
+    </form>
 </div>
 
 <style>
@@ -37,3 +34,4 @@
         clip: rect(10px, 150px, 130px, 10px);
     }
 </style>
+<script src="/js/addForm.js"></script>

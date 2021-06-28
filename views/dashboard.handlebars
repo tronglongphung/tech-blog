@@ -13,10 +13,18 @@
   </div>
 
   <div class="flex flex-wrap justify-center p-7 pt-4">
-    <h2 class="w-full border-t-2 py-6 my-4 text-center text-xl">Results</h2>
+    <div class="text-center">
+      <h2>{{title}}</h2>
+      <p>{{content}}</p>
+      <p>Created by {{user.name}} on {{format_date date_created}}</p>
+
+      <p>
+        <button class="btn btn-primary">Fund this Project!</button>
+      </p>
+    </div>
     <div class="flex flex-wrap justify-center w-full">
 
-      {{> game}}
+      {{> form}}
     </div>
 
 

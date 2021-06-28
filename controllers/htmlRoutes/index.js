@@ -1,7 +1,7 @@
 // Requiring path to so we can use relative routes to our HTML files
 const express = require("express");
 const { Op } = require("sequelize");
-const { Team, Game, TeamRecord, UserFollowing } = require("../../models");
+const { Game, Blog, User } = require("../../models");
 
 // Requiring our custom middleware for checking if a user is logged in
 const withAuth = require("../../utils/withAuth");
@@ -9,31 +9,14 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const pastGamesData = await Game.findAll({
+    const allBlogsData = await Blog.findAll({
       include: [{ all: true, nested: true }],
-      order: [["date_time", "ASC"]],
-      where: {
-        date_time: {
-          [Op.lt]: new Date(),
-        },
-      },
     });
-    const upcomingGamesData = await Game.findAll({
-      include: [{ all: true, nested: true }],
-      order: [["date_time", "ASC"]],
-      where: {
-        date_time: {
-          [Op.gte]: new Date(),
-        },
-      },
-    });
-    const pastGames = pastGamesData.map((g) => g.get({ plain: true }));
-    const upcomingGames = upcomingGamesData.map((g) => g.get({ plain: true }));
-    // const pastGames = games.map((g) => g.date_time >= req.session.currentTime);
+
+    const allBlogs = allBlogsData.map((blog) => blog.get({ plain: true }));
     res.render("index", {
       loggedIn: req.session.loggedIn,
-      pastGames,
-      upcomingGames,
+      allBlogs,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -42,35 +25,32 @@ router.get("/", async (req, res) => {
 
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
-    const pastGamesData = await Game.findAll({
+    const allBlogsData = await Blog.findAll({
       include: [{ all: true, nested: true }],
-      order: [["date_time", "ASC"]],
-      where: {
-        date_time: {
-          [Op.lt]: new Date(),
-        },
-      },
     });
-    const upcomingGamesData = await Game.findAll({
-      include: [{ all: true, nested: true }],
-      order: [["date_time", "ASC"]],
-      where: {
-        date_time: {
-          [Op.gte]: new Date(),
-        },
-      },
-    });
-    const pastGames = pastGamesData.map((g) => g.get({ plain: true }));
-    const upcomingGames = upcomingGamesData.map((g) => g.get({ plain: true }));
+
+    const allBlogs = allBlogsData.map((g) => g.get({ plain: true }));
+
     // const pastGames = games.map((g) => g.date_time >= req.session.currentTime);
     res.render("dashboard", {
       user: req.session.user,
-
       loggedIn: req.session.loggedIn,
-      pastGames,
-      upcomingGames,
+      allBlogs,
     });
   } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get("/newblog", withAuth, async (req, res) => {
+  try {
+    res.render("newblog", {
+      user: req.session.user,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
