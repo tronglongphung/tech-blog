@@ -14,9 +14,12 @@ router.get("/", async (req, res) => {
     });
 
     const allBlogs = allBlogsData.map((blog) => blog.get({ plain: true }));
+    console.log(allBlogs);
+
     res.render("index", {
+      user: req.session.user,
       loggedIn: req.session.loggedIn,
-      allBlogs,
+      posts: allBlogs,
     });
   } catch (err) {
     res.status(500).json(err);

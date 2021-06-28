@@ -13,11 +13,11 @@
 
   <div class="flex flex-wrap justify-center p-7 pt-4">
     <div class="flex flex-wrap justify-center p-7 pt-4">
-      <div class="text-center">
-        <h2>{{allBlogs.title}}</h2>
-        <p>{{allBlogs.content}}</p>
-        <p>Created by {{user.name}}</p>
-      </div>
+
+      {{#each posts}}
+      {{>blog}}
+      {{/each}}
+
       <div class="mb-2">
         <a href=" /newblog">
           <button
