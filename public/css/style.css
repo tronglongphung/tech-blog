@@ -42,5 +42,5 @@ a.signupLink:hover {
 }
 
 .grid-modify {
-  grid-template-columns: 80px 180px 120px 180px 80px;
+  grid-template-rows: 40px 40px 40px;
 }

@@ -30,18 +30,21 @@ router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const allBlogsData = await Blog.findAll({
       include: [{ all: true, nested: true }],
+      // need help on WHERE query
+      where: {
+        user_id: req.session.user.id,
+      },
     });
 
-    const allBlogs = allBlogsData.map((g) => g.get({ plain: true }));
+    const allBlogs = allBlogsData.map((blog) => blog.get({ plain: true }));
+    console.log(allBlogs);
 
-    // const pastGames = games.map((g) => g.date_time >= req.session.currentTime);
     res.render("dashboard", {
       user: req.session.user,
       loggedIn: req.session.loggedIn,
-      allBlogs,
+      posts: allBlogs,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
